@@ -1,0 +1,47 @@
+PLAN DE DESARROLLO CURRICULAR Nº {{numero_pdc}}
+{{distrito_educativo}}
+{{unidad_educativa}}
+{{nivel}}
+{{año_de_escolaridad}}
+{{maestro}}
+{{maestro}}
+{{maestro}}
+{{director}}
+{{director}}
+{{director}}
+{{trimestre}}
+{{trimestre}}
+{{trimestre}}
+{{duracion}}
+{{duracion}}
+{{duracion}}
+{{campos_areas}}
+{{perfil_de_salida_semana_1}}
+{{momentos_formativos_semana_1}}
+{{recursos_semana_1}}
+{{criterios_de_evaluacion}}
+{{campos_areas}}
+{{perfil_de_salida_semana_2}}
+{{momentos_formativos_semana_2}}
+{{recursos_semana_2}}
+{{criterios_de_evaluacion}}
+{{campos_areas}}
+{{perfil_de_salida_semana_3}}
+{{momentos_formativos_semana_3}}
+{{recursos_semana_3}}
+{{criterios_de_evaluacion}}
+{{campos_areas}}
+{{perfil_de_salida_semana_4}}
+{{momentos_formativos_semana_4}}
+{{recursos_semana_4}}
+{{criterios_de_evaluacion}}
+ADAPTACIONES CURRICULARES:  {{condicion}}
+{{adaptaciones}}
+ADAPTACIONES CURRICULARES:  {{condicion}}
+{{adaptaciones}}
+ADAPTACIONES CURRICULARES:  {{condicion}}
+{{adaptaciones}}
+ADAPTACIONES CURRICULARES:  {{condicion}}
+{{adaptaciones}}
+ADAPTACIONES CURRICULARES:  {{condicion}}
+{{adaptaciones}}

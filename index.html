@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador PDC Inicial 2026 - Gestión Educativa</title>
+    <link rel="icon" type="image/png" href="img/icono.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.7/dist/pizzip-utils.js"></script>
+    <script src="https://unpkg.com/docxtemplater@3.37.11/build/docxtemplater.js"></script>
+    <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-12 p-10 section-card relative overflow-hidden">
+            <img src="img/logo.png" alt="Logotipo"
+                class="mx-auto mb-6 h-20 md:h-28 object-contain relative z-10 transition-transform hover:scale-105 duration-300">
+            <div
+                class="inline-block px-5 py-1.5 bg-slate-100 text-slate-700 rounded-full text-xs font-bold tracking-widest uppercase mb-5 relative z-10 shadow-sm border border-slate-200">
+                Sistema de Planificación Curricular V.4
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 leading-tight heading-font relative z-10">
+                EDUCACIÓN INICIAL EN <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-600">FAMILIA
+                    COMUNITARIA</span>
+            </h1>
+            <h2 class="text-lg md:text-xl font-semibold text-slate-500 mt-3 relative z-10 tracking-wide">
+                PLAN DE DESARROLLO CURRICULAR 2026
+            </h2>
+
+            <div class="header-line my-8 relative z-10"></div>
+
+            <div class="flex flex-col items-center justify-center gap-3 relative z-10">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Documento de
+                    Planificación</span>
+                <div
+                    class="flex items-center bg-white/90 backdrop-blur-md px-8 py-3 rounded-2xl border-2 border-slate-200 shadow-sm transition-all hover:border-slate-300">
+                    <span class="text-xl font-bold text-slate-700 mr-3">Nº</span>
+                    <input type="number" id="numeroPDC"
+                        class="w-24 bg-transparent text-3xl font-black text-slate-700 focus:outline-none text-center placeholder-slate-400"
+                        placeholder="01">
+                </div>
+            </div>
+        </header>
+
+        <form id="pdcForm" class="space-y-8">
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="icon-circle">1</div>
+                    <h2 class="text-xl font-bold text-slate-800 heading-font">I. Datos Referenciales</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="form-group">
+                        <label class="label-style">Distrito Educativo</label>
+                        <input type="text" id="distrito" class="input-style" placeholder="Ej. Cercado I">
+                    </div>
+                    <div class="form-group">
+                        <label class="label-style">Nivel de Educación</label>
+                        <input type="text" id="nivel" class="input-style bg-slate-50/50 text-slate-500 font-medium"
+                            value="Inicial en Familia Comunitaria" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-style">Director/a de Unidad</label>
+                        <input type="text" id="director" class="input-style" placeholder="Nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label class="label-style">Maestra/o Responsable</label>
+                        <input type="text" id="maestro" class="input-style" placeholder="Nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label class="label-style">Campos de Saberes</label>
+                        <input type="text" id="area" class="input-style bg-slate-50/50 text-slate-500 font-medium"
+                            value="CyP / CyS / VTT / CTyP" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="label-style">Trimestre</label>
+                        <select id="trimestre" class="input-style select-important">
+                            <option>Primer Trimestre</option>
+                            <option>Segundo Trimestre</option>
+                            <option>Tercer Trimestre</option>
+                        </select>
+                    </div>
+                    <div class="form-group lg:col-span-2">
+                        <label class="label-style">Periodo o Duración</label>
+                        <input type="text" id="duracion" class="input-style"
+                            placeholder="Ej: Del 02 de febrero al 27 de febrero">
+                    </div>
+                    <div class="form-group">
+                        <label class="label-style">Unidad Educativa</label>
+                        <input type="text" id="ue" class="input-style" placeholder="Nombre de la escuela">
+                    </div>
+                    <div class="form-group lg:col-span-3">
+                        <label class="label-style">Año de Escolaridad</label>
+                        <select id="escolaridad" class="input-style select-important">
+                            <option value="" disabled selected>Haga clic para seleccionar el año...</option>
+                            <option value="PRIMER AÑO DE ESCOLARIDAD">PRIMER AÑO DE ESCOLARIDAD</option>
+                            <option value="SEGUNDO AÑO DE ESCOLARIDAD">SEGUNDO AÑO DE ESCOLARIDAD</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <div class="icon-circle bg-emerald-grad">2</div>
+                    <h2 class="text-xl font-bold text-slate-800 heading-font">II. Organización de Contenidos y Perfiles
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+                    <div class="xl:col-span-5 space-y-5">
+                        <h3
+                            class="text-xs font-black text-slate-400 uppercase tracking-[0.1em] mb-4 flex items-center gap-2">
+                            <span
+                                class="w-2.5 h-2.5 bg-emerald-400 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.6)]"></span>
+                            Campos de Saberes
+                        </h3>
+                        <p class="text-[11px] font-medium text-slate-400 mb-4 flex items-center gap-2">
+                            (Registre los contenidos que se trabajarán en cada campo)</p>
+                        <div class="campo-box color-1">
+                            <span class="label-campo">Cosmos y Pensamiento</span>
+                            <p class="campo-desc">(Valores y espiritualidades)</p>
+                            <textarea id="cont_cosmos" class="input-style auto-expand !bg-slate-50/50" rows="2"
+                                placeholder="Describa los contenidos aquí..."></textarea>
+                        </div>
+                        <div class="campo-box color-2">
+                            <span class="label-campo">Comunidad y Sociedad</span>
+                            <p class="campo-desc">(Lenguaje, sociales, música, artes, psicomotricidad)</p>
+                            <textarea id="cont_comunidad" class="input-style auto-expand !bg-slate-50/50" rows="2"
+                                placeholder="Describa los contenidos aquí..."></textarea>
+                        </div>
+                        <div class="campo-box color-3">
+                            <span class="label-campo">Vida, Tierra y Territorio</span>
+                            <p class="campo-desc">(Ciencias naturales)</p>
+                            <textarea id="cont_vida" class="input-style auto-expand !bg-slate-50/50" rows="2"
+                                placeholder="Describa los contenidos aquí..."></textarea>
+                        </div>
+                        <div class="campo-box color-4">
+                            <span class="label-campo">Ciencia, Tecnología y Prod.</span>
+                            <p class="campo-desc">(Razonamiento lógico matemático)</p>
+                            <textarea id="cont_ciencia" class="input-style auto-expand !bg-slate-50/50" rows="2"
+                                placeholder="Describa los contenidos aquí..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="xl:col-span-7">
+                        <h3
+                            class="text-xs font-black text-slate-400 uppercase tracking-[0.1em] mb-4 flex items-center gap-2">
+                            <span
+                                class="w-2.5 h-2.5 bg-blue-400 rounded-full shadow-[0_0_8px_rgba(96,165,250,0.6)]"></span>
+                            Perfiles de Salida Semanales
+                        </h3>
+                        <div id="semanas-container" class="space-y-5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card border-l-[6px] border-l-emerald-500">
+                <div class="section-header flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-emerald-50/80 border border-emerald-100 flex items-center justify-center text-emerald-600 shadow-sm shrink-0">
+                            <!-- Accessibility Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="16" cy="4" r="1.5"></circle>
+                                <path d="m18 19 1-7-6 1"></path>
+                                <path d="m5 8 3-3 5.5 3-2.36 3.5"></path>
+                                <path d="M4.24 14.5a5 5 0 0 0 6.88 6"></path>
+                                <path d="M13.76 17.5a5 5 0 0 0-6.88-6"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl md:text-2xl font-black text-slate-800 heading-font tracking-tight">III.
+                                ADAPTACIONES CURRICULARES</h2>
+                            <p class="text-xs md:text-sm text-slate-500 font-medium mt-1">Ajustes pedagógicos para
+                                estudiantes con necesidades específicas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6 bg-slate-50/50 p-6 rounded-2xl border border-slate-100/60">
+                    <div class="form-group mb-0">
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">TIPO
+                            DE ADAPTACIÓN (OBLIGATORIO)</label>
+                        <select id="categoriaAdaptacion"
+                            class="input-style select-important !bg-white focus:!border-emerald-400 focus:!ring-emerald-400/20"
+                            onchange="toggleAdaptacionUI()">
+                            <option value="curricular" selected>a) Adaptaciones leves (Rezago escolar)</option>
+                            <option value="significativa">b) Adaptaciones significativas (Discapacidad/TEA)</option>
+                        </select>
+                    </div>
+
+                    <!-- Contenedor adaptaciones significativas -->
+                    <div id="estudiantesSignificativasContainer" class="space-y-4 pt-2">
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest block">ESTUDIANTES
+                            CON ADAPTACIONES SIGNIFICATIVAS</label>
+
+                        <div id="listaEstudiantes" class="space-y-3">
+                            <div class="flex items-center gap-3 estudiante-item group">
+                                <input type="text"
+                                    class="input-style flex-grow estudiante-input !bg-white transition-colors hover:border-emerald-300 focus:!border-emerald-400 focus:!ring-emerald-400/20"
+                                    placeholder="Ej: Estudiante 1: TDAH">
+                                <button type="button"
+                                    class="w-12 h-12 bg-white text-red-400 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all shrink-0 flex items-center justify-center border border-slate-200 hover:border-red-200 shadow-sm"
+                                    onclick="eliminarEstudiante(this)" title="Eliminar estudiante">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="button"
+                            class="text-[11px] font-bold text-emerald-600 uppercase tracking-[0.15em] flex items-center gap-2 mt-2 hover:text-emerald-700 hover:bg-emerald-50 py-2 px-3 rounded-lg transition-colors border border-transparent hover:border-emerald-100"
+                            onclick="agregarEstudiante()">
+                            <span class="text-base font-black leading-none">+</span> AGREGAR ESTUDIANTE
+                        </button>
+                    </div>
+
+                    <!-- Contenedor adaptaciones leves -->
+                    <div id="estudiantesLevesContainer" class="form-group hidden pt-2">
+                        <label
+                            class="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-2">Condición
+                            o Estudiante</label>
+                        <input type="text" id="tipoAdaptacion" class="input-style !bg-white"
+                            placeholder="Ej: Rezago escolar general">
+                    </div>
+                </div>
+            </div>
+
+            <div class="py-4 space-y-4">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <button type="button" onclick="generarPDCWord()" class="btn-generate flex-1" id="btnGenerar">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span>Generar PDC</span>
+                    </button>
+                    <button type="button" onclick="descargarDocumento()"
+                        class="btn-generate !bg-emerald-500 hover:!bg-emerald-600 hidden flex-1" id="btnDescargar">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span>Descargar PDC en Word</span>
+                    </button>
+                </div>
+
+                <div id="progressContainer"
+                    class="hidden mt-6 bg-white border border-slate-200 rounded-2xl p-5 md:p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-800 uppercase tracking-widest">Progreso</h3>
+                            <p id="progressText" class="text-xs font-semibold text-slate-500 mt-1">Iniciando...</p>
+                        </div>
+                        <div class="text-right">
+                            <span id="progressPercent"
+                                class="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">0%</span>
+                        </div>
+                    </div>
+                    <div
+                        class="w-full bg-slate-100 rounded-full h-3 md:h-4 border border-slate-200/60 overflow-hidden shadow-inner">
+                        <div id="progressBar"
+                            class="bg-gradient-to-r from-blue-500 via-teal-400 to-emerald-400 h-full rounded-full transition-all duration-500 ease-out relative shadow-[0_0_10px_rgba(52,211,153,0.4)]"
+                            style="width: 0%">
+                            <div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="mt-4 p-4 md:p-5 rounded-2xl bg-slate-900 border border-slate-800 shadow-lg">
+            <div class="flex items-center gap-2 mb-3 pb-3 border-b border-white/5">
+                <span
+                    class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+                <span class="text-[10px] text-emerald-400/80 uppercase font-black tracking-widest font-mono">Estado de
+                    generación del PDC</span>
+            </div>
+            <textarea id="promptOutput" rows="4"
+                class="w-full bg-transparent text-emerald-400/90 font-mono text-xs focus:outline-none resize-none"
+                readonly placeholder="Esperando acción..."></textarea>
+        </div>
+
+
+
+
+        <footer class="mt-20 text-center border-t border-slate-200/60 pt-10 pb-10">
+            <p class="text-slate-500 text-[11px] leading-relaxed uppercase tracking-[0.15em] font-semibold">
+                © 2026 ICG SOFTWARE GROUP | SOLUCIONES TECNOLÓGICAS<br>
+                <span class="text-slate-400">Prof.: ISRAEL CONDORI GONZALES</span>
+            </p>
+        </footer>
+    </div>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
