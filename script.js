@@ -382,7 +382,19 @@ ${jsonExtraKeys}
         }
 
         const data = await response.json();
-        let geminiText = data.candidates[0].content.parts[0].text;
+        let geminiText = "";
+
+        if (Array.isArray(data)) {
+            for (const chunk of data) {
+                if (chunk.candidates && chunk.candidates.length > 0 && chunk.candidates[0].content && chunk.candidates[0].content.parts && chunk.candidates[0].content.parts.length > 0) {
+                    geminiText += chunk.candidates[0].content.parts[0].text;
+                }
+            }
+        } else if (data.candidates && data.candidates.length > 0) {
+            geminiText = data.candidates[0].content.parts[0].text;
+        } else {
+            throw new Error("Formato de respuesta inesperado (" + JSON.stringify(data).substring(0, 100) + ")");
+        }
 
         geminiText = geminiText.replace(/```json/g, "").replace(/```/g, "").trim();
 
